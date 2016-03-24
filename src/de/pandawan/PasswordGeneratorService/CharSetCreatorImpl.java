@@ -3,7 +3,7 @@ package de.pandawan.PasswordGeneratorService;
 /**
  * Created by vuong on 23.03.16.
  */
-public class CharSetCreatorFactory implements ICharSetCreator {
+public class CharSetCreatorImpl implements ICharSetCreator {
     @Override
     public String getCharSet(CharSetType type) {
         String output;

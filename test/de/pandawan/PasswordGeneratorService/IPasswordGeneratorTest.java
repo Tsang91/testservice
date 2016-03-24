@@ -106,7 +106,7 @@ public class IPasswordGeneratorTest {
     public void testGeneratePasswordWithCharSetCreator() throws Exception{
         //arrange
         int stringLength = 15;
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
         IPasswordGenerator passwordGenerator = new PasswordGeneratorImpl(
             stringLength, creator, CharSetType.Alphanumeric);
 

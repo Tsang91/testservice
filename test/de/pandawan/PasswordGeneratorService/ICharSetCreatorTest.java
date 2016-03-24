@@ -11,7 +11,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsNotNullAlphabeticCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Alphabetic);
@@ -23,7 +23,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueTypeAlphabeticCharSet() throws Exception {
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Alphabetic);
@@ -35,7 +35,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsNotEmptyAlphabeticCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Alphabetic);
@@ -47,7 +47,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphabeticCharSetLowerCase() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.AlphabeticLower);
@@ -59,7 +59,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphabeticCharSetUpperCase() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.AlphabeticUpper);
@@ -71,7 +71,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsNumericCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Numeric);
@@ -83,7 +83,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphabeticCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Alphabetic);
@@ -95,7 +95,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphanumericLowerCharSet() throws Exception {
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.AlphanumericLower);
@@ -107,7 +107,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphanumericUpperCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.AlphanumericUpper);
@@ -119,7 +119,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsAlphanumericCharSet() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Alphanumeric);
@@ -131,7 +131,7 @@ public class ICharSetCreatorTest {
     @Test
     public void testReturnValueIsInvalid() throws Exception{
         //arrange
-        ICharSetCreator creator = new CharSetCreatorFactory();
+        ICharSetCreator creator = new CharSetCreatorImpl();
 
         //act
         String charSet = creator.getCharSet(CharSetType.Invalid);
