@@ -6,37 +6,36 @@ package de.pandawan.PasswordGeneratorService;
 public class CharSetCreatorFactory implements ICharSetCreator {
     @Override
     public String getCharSet(CharSetType type) {
-        String charSet;
-        AlphabeticCharSet alphabeticCharSet = new AlphabeticCharSet();
-        NumericCharSet numericCharSet = new NumericCharSet();
+        String output;
+        CharSet charSet = new CharSet();
         switch (type)
         {
             case AlphabeticLower:
-                charSet = alphabeticCharSet.createLowerCharSet();
+                output = charSet.createLowerCharSet();
                 break;
             case AlphabeticUpper:
-                charSet = alphabeticCharSet.createUpperCharSet();
+                output = charSet.createUpperCharSet();
                 break;
             case Alphabetic:
-                charSet = alphabeticCharSet.createLowerCharSet() + alphabeticCharSet.createUpperCharSet();
+                output = charSet.createLowerCharSet() + charSet.createUpperCharSet();
                 break;
             case Numeric:
-                charSet = numericCharSet.createCharSet();
+                output = charSet.createNumCharSet();
                 break;
             case AlphanumericLower:
-                charSet = alphabeticCharSet.createLowerCharSet() + numericCharSet.createCharSet();
+                output = charSet.createLowerCharSet() + charSet.createNumCharSet();
                 break;
             case AlphanumericUpper:
-                charSet = alphabeticCharSet.createUpperCharSet() + numericCharSet.createCharSet();
+                output = charSet.createUpperCharSet() + charSet.createNumCharSet();
                 break;
             case Alphanumeric:
-                charSet = alphabeticCharSet.createLowerCharSet() + alphabeticCharSet.createUpperCharSet()+
-                        numericCharSet.createCharSet();
+                output = charSet.createLowerCharSet() + charSet.createUpperCharSet()+
+                        charSet.createNumCharSet();
                 break;
             default:
-                charSet = "";
+                output = "";
                 break;
         }
-        return charSet;
+        return output;
     }
 }
