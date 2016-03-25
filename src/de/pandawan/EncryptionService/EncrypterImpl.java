@@ -6,8 +6,8 @@ package de.pandawan.EncryptionService;
 public class EncrypterImpl implements IEncrypter {
     private byte[] encryptionKey;
 
-    public EncrypterImpl(String key){
-        this.encryptionKey = key.getBytes();
+    public EncrypterImpl(CustomKey key){
+        this.encryptionKey = key.getKeyArray();
     }
 
     @Override

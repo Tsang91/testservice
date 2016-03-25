@@ -11,7 +11,7 @@ public class IEncrypterTest {
     @Test
     public void testReturnValueIsNotNull() throws NullPointerException {
         //arrange
-        String key = "Test!";
+        CustomKey key = new CustomKeyGenerator().generateKey(16);
         IEncrypter encrypter = new EncrypterImpl(key);
 
         //act
@@ -24,7 +24,7 @@ public class IEncrypterTest {
     @Test
     public void testReturnValueIsNotEmpty() throws Exception{
         //arrange
-        String key = "Test!";
+        CustomKey key = new CustomKeyGenerator().generateKey(16);
         IEncrypter encrypter = new EncrypterImpl(key);
 
         //act
