@@ -21,7 +21,6 @@ public class EncrypterImpl implements IEncrypter {
 
         cipher.init(Cipher.ENCRYPT_MODE, aesKey);
         byte[] encrypted = cipher.doFinal(toEncrypt.getBytes());
-
         return encrypted;
     }
 }
