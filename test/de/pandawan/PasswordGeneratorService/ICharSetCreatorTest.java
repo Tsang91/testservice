@@ -21,18 +21,6 @@ public class ICharSetCreatorTest {
     }
 
     @Test
-    public void testReturnValueTypeAlphabeticCharSet() throws Exception {
-        //arrange
-        ICharSetCreator creator = new CharSetCreatorImpl();
-
-        //act
-        String charSet = creator.getCharSet(CharSetType.Alphabetic);
-
-        //assert
-        Assert.assertTrue("CharSet should have type String", charSet instanceof String);
-    }
-
-    @Test
     public void testReturnValueIsNotEmptyAlphabeticCharSet() throws Exception{
         //arrange
         ICharSetCreator creator = new CharSetCreatorImpl();

@@ -20,18 +20,6 @@ public class IPasswordGeneratorTest {
     }
 
     @Test
-    public void testReturnValueType() throws Exception {
-        //arrange
-        IPasswordGenerator passwordGenerator = new PasswordGeneratorImpl(0);
-
-        //act
-        String passwordString = passwordGenerator.generatePassword();
-
-        //assert
-        Assert.assertTrue("Should be a String!", passwordString instanceof String);
-    }
-
-    @Test
     public void testReturnValueIsNotEmpty() throws Exception{
         //arrange
         IPasswordGenerator passwordGenerator = new PasswordGeneratorImpl(5);

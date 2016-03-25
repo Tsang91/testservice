@@ -9,7 +9,7 @@ import org.junit.Test;
 public class IEncrypterTest {
 
     @Test
-    public void testReturnValueIsNotNull() throws Exception {
+    public void testReturnValueIsNotNull() throws NullPointerException {
         //arrange
         String key = "Test!";
         IEncrypter encrypter = new EncrypterImpl(key);
@@ -34,5 +34,27 @@ public class IEncrypterTest {
         Assert.assertTrue("Encrypted output shouldn't be empty", encrypted.length >= 0);
     }
 
+    @Test
+    public void testCreateKeyIsNotEmpty() throws NullPointerException{
+        //arrange
+        CustomKeyGenerator keyGenerator = new CustomKeyGenerator();
 
+        //act
+        CustomKey key = keyGenerator.generateKey(16);
+
+        //assert
+        Assert.assertTrue("Key shouldn't be empty", key != null);
+    }
+
+    @Test
+    public void testCreateKey16Byte() throws Exception{
+        //arrange
+        CustomKeyGenerator keyGenerator = new CustomKeyGenerator();
+
+        //act
+        CustomKey key = keyGenerator.generateKey(16);
+
+        //assert
+        Assert.assertTrue("Key should be 128bit/16byte key", key.getKeyArray().length == 16);
+    }
 }
