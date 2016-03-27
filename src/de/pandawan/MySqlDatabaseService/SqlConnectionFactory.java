@@ -17,6 +17,7 @@ public class SqlConnectionFactory implements ISqlConnectionFactory {
     @Override
     public Connection establishConnection() {
         Connection connection = null;
+
         if(dbType.matches("MySql")) {
             try {
                 connection = new MySqlConnectorImpl(login).connecionToDatabase();
