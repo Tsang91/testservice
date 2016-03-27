@@ -40,4 +40,17 @@ public class IMySqlConnectorTest {
         //assert
         Assert.assertTrue("Statement shoudln't be null", statement != null);
     }
+
+    @Test
+    public void testSqlConnectionFactory() throws Exception{
+        //arrange
+        LoginToken login = new LoginToken();
+        ISqlConnectionFactory connectionFactory= new SqlConnectionFactory(login, "MySql");
+
+        //act
+        Connection connection = connectionFactory.establishConnection();
+
+        //assert
+        Assert.assertTrue("Connection shoudln't be null", connection != null);
+    }
 }
