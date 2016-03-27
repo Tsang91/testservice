@@ -9,13 +9,13 @@ import org.junit.Test;
 public class ISqlQueryCreatorTest {
 
     @Test
-    public void testQueryIsNotNull(){
+    public void testQueryIsNotNull() throws Exception{
         //arrange
         String query = new String("select * from password");
         ISqlQueryCreator queryCreator = new SqlQueryCreator();
 
         //act
-        QueryContextItem contextItem = queryCreator.getQueryFromStatement(query);
+        QueryContextItem contextItem = queryCreator.createQueryContextItem(query);
 
         //assert
         Assert.assertTrue("QueryObject shouldn't be null", contextItem != null);
