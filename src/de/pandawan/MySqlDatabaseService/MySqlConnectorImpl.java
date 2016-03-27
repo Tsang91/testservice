@@ -17,6 +17,12 @@ public class MySqlConnectorImpl implements IMySqlConnector {
         this.password = password;
     }
 
+    public MySqlConnectorImpl(LoginToken token){
+        this.url = token.getUrl();
+        this.user = token.getUser();
+        this.password = token.getPassword();
+    }
+
     @Override
     public Connection connecionToDatabase() {
         Connection connection = null;

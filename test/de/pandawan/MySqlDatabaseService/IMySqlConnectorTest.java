@@ -44,7 +44,10 @@ public class IMySqlConnectorTest {
     @Test
     public void testSqlConnectionFactory() throws Exception{
         //arrange
-        LoginToken login = new LoginToken();
+        String url = "jdbc:mysql://localhost:32768";
+        String user = "root";
+        String password = "root";
+        LoginToken login = new LoginToken(url, user, password);
         ISqlConnectionFactory connectionFactory= new SqlConnectionFactory(login, "MySql");
 
         //act
