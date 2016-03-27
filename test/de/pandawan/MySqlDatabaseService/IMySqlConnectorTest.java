@@ -13,7 +13,7 @@ public class IMySqlConnectorTest {
     @Test
     public void testReturnValueOfConnectionIsNotNull() throws Exception {
         //arrange
-        String url = "jdbc:mysql://localhost:32769";
+        String url = "jdbc:mysql://localhost:32768";
         String user = "root";
         String password = "root";
         IMySqlConnector connector = new MySqlConnectorImpl(url, user, password);
