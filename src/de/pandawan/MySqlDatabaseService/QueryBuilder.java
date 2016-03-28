@@ -1,13 +1,25 @@
 package de.pandawan.MySqlDatabaseService;
 
+import java.util.ArrayList;
+
 /**
  * Created by vuong on 27.03.16.
  */
 public class QueryBuilder {
-    public String buildSelect(int columnNamesCount, int tableNamesCount){
+    public String buildSelect(int columnNamesCount){
         String result = new String();
         result += createSelectSubString(columnNamesCount);
-        result += createFromSubString(tableNamesCount);
+        return result;
+    }
+
+    public String addFrom(ArrayList<String> tableNameList){
+        String result = "from ";
+        result += tableNameList.get(0);
+
+        if(tableNameList.size() > 1)
+            for(String tableName : tableNameList)
+                result += String.format(" AND %1$s", tableName);
+
         return result;
     }
 
@@ -15,14 +27,6 @@ public class QueryBuilder {
         String result = "select ";
 
         result = addAlias(columnNamesCount, result);
-
-        return result;
-    }
-
-    private  String createFromSubString(int tableNamesCount){
-        String result = "from ";
-
-        result = addAlias(tableNamesCount, result);
 
         return result;
     }

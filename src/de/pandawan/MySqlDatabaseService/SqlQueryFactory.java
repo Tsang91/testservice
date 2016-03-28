@@ -18,16 +18,15 @@ public class SqlQueryFactory implements ISqlQueryFactory {
     ) throws SQLException
     {
         PreparedStatement statement = null;
+        String queryString = new String();
         try {
-            ArrayList<String> aliasValuesForPreparedStatement = aliasValuesForPreparedStatement(columns, tables);
             QueryBuilder builder = new QueryBuilder();
+            queryString += builder.buildSelect(columns.size());
+            queryString += builder.addFrom(tables);
+            statement = connection.prepareStatement(queryString);
 
-            statement = connection.prepareStatement(
-                builder.buildSelect(columns.size(),
-                    tables.size()));
-
-            for (String aliasValue : aliasValuesForPreparedStatement) {
-                statement.setString(aliasValuesForPreparedStatement.indexOf(aliasValue) + 1, aliasValue);
+            for(String column : columns){
+                statement.setString(columns.indexOf(column) + 1, column);
             }
         }
         catch (SQLException exp){
@@ -35,15 +34,5 @@ public class SqlQueryFactory implements ISqlQueryFactory {
         }
 
         return  statement;
-    }
-
-    private ArrayList<String> aliasValuesForPreparedStatement(
-        ArrayList<String> columns,
-        ArrayList<String> tables)
-    {
-        ArrayList<String> aliasValues = new ArrayList<>();
-        aliasValues.addAll(columns);
-        aliasValues.addAll(tables);
-        return aliasValues;
     }
 }
