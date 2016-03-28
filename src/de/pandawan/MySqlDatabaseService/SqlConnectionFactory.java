@@ -19,11 +19,7 @@ public class SqlConnectionFactory implements ISqlConnectionFactory {
         Connection connection = null;
 
         if(dbType.matches("MySql")) {
-            try {
-                connection = new MySqlConnectorImpl(login).connecionToDatabase();
-            } catch (Exception exp) {
-                exp.getCause();
-            }
+            connection = new MySqlConnectorImpl(login).connecionToDatabase();
         }
 
         return connection;

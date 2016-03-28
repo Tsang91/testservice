@@ -9,16 +9,16 @@ import java.sql.ResultSet;
 /**
  * Created by vuong on 27.03.16.
  */
-public class ISqlQueryCreatorTest {
+public class ISqlQueryGeneratorTest {
 
     @Test
     public void testQueryIsNotNull() throws Exception{
         //arrange
         String query = new String("select * from password");
-        ISqlQueryCreator queryCreator = new SqlQueryCreator();
+        ISqlQueryGenerator queryCreator = new SqlQueryGenerator();
 
         //act
-        QueryContextItem contextItem = queryCreator.createQueryContextItem(query);
+        QueryBuilder contextItem = queryCreator.createQueryContextItem(query);
 
         //assert
         Assert.assertTrue("QueryObject shouldn't be null", contextItem != null);
@@ -28,8 +28,8 @@ public class ISqlQueryCreatorTest {
     public void testQueryReturnValueIsNotNull() throws Exception{
         //arrange
         String query = new String("select * from passwordTable");
-        ISqlQueryCreator queryCreator = new SqlQueryCreator();
-        QueryContextItem contextItem = queryCreator.createQueryContextItem(query);
+        ISqlQueryGenerator queryCreator = new SqlQueryGenerator();
+        QueryBuilder contextItem = queryCreator.createQueryContextItem(query);
         Connection connection = new SqlConnectionFactory(
             new LoginToken(
                 "jdbc:mysql://localhost:32768/PasswordDB",
@@ -42,7 +42,6 @@ public class ISqlQueryCreatorTest {
         //act
         ResultSet set = connection.createStatement()
             .executeQuery(queryCreator.createQueryContextItem(query).getQuery());
-        set.close();
 
         //assert
         Assert.assertTrue("ResultSet shouldnt be null", set != null);
