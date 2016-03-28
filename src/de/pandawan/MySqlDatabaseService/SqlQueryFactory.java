@@ -13,24 +13,37 @@ public class SqlQueryFactory implements ISqlQueryFactory {
     @Override
     public PreparedStatement generatePreparedStatement(
         Connection connection,
-        ArrayList<String> selectColumns,
-        ArrayList<String> selectTables
+        ArrayList<String> columns,
+        ArrayList<String> tables
     ) throws SQLException
     {
         PreparedStatement statement = null;
-        ArrayList<String> aliasValues = new ArrayList<>();
-        aliasValues.addAll(selectColumns);
-        aliasValues.addAll(selectTables);
-        QueryBuilder builder = new QueryBuilder();
+        try {
+            ArrayList<String> aliasValuesForPreparedStatement = aliasValuesForPreparedStatement(columns, tables);
+            QueryBuilder builder = new QueryBuilder();
 
-        statement = connection.prepareStatement(
-            builder.buildSelect(selectColumns.size(),
-                selectTables.size()));
+            statement = connection.prepareStatement(
+                builder.buildSelect(columns.size(),
+                    tables.size()));
 
-        for(String aliasValue : aliasValues){
-            statement.setString(aliasValues.indexOf(aliasValue)+1, aliasValue);
+            for (String aliasValue : aliasValuesForPreparedStatement) {
+                statement.setString(aliasValuesForPreparedStatement.indexOf(aliasValue) + 1, aliasValue);
+            }
+        }
+        catch (SQLException exp){
+            exp.getCause();
         }
 
         return  statement;
+    }
+
+    private ArrayList<String> aliasValuesForPreparedStatement(
+        ArrayList<String> columns,
+        ArrayList<String> tables)
+    {
+        ArrayList<String> aliasValues = new ArrayList<>();
+        aliasValues.addAll(columns);
+        aliasValues.addAll(tables);
+        return aliasValues;
     }
 }

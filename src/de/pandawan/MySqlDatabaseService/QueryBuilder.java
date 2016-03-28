@@ -4,7 +4,6 @@ package de.pandawan.MySqlDatabaseService;
  * Created by vuong on 27.03.16.
  */
 public class QueryBuilder {
-    //columnNamesCount = 0 means *
     public String buildSelect(int columnNamesCount, int tableNamesCount){
         String result = new String();
         result += createSelectSubString(columnNamesCount);
@@ -15,11 +14,7 @@ public class QueryBuilder {
     private String createSelectSubString(int columnNamesCount){
         String result = "select ";
 
-        if(columnNamesCount != 0) {
-            result = addAlias(columnNamesCount, result);
-        }
-        else
-            result += "* ";
+        result = addAlias(columnNamesCount, result);
 
         return result;
     }
