@@ -17,7 +17,7 @@ public class ISqlQueryGeneratorTest {
         ISqlQueryGenerator queryCreator = new SqlQueryGenerator();
 
         //act
-        QueryBuilder contextItem = queryCreator.createQueryContextItem(query);
+        QueryBuilder contextItem = queryCreator.generateQuery(query);
 
         //assert
         Assert.assertTrue("QueryObject shouldn't be null", contextItem != null);
@@ -28,7 +28,7 @@ public class ISqlQueryGeneratorTest {
         //arrange
         String query = new String("select * from passwordTable");
         ISqlQueryGenerator queryCreator = new SqlQueryGenerator();
-        QueryBuilder contextItem = queryCreator.createQueryContextItem(query);
+        QueryBuilder contextItem = queryCreator.generateQuery(query);
         ISqlConnectionFactory factory= new SqlConnectionFactory(
             new LoginToken(
                 "jdbc:mysql://localhost:32768/PasswordDB",
