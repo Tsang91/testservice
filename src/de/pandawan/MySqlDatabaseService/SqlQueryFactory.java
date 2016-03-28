@@ -3,9 +3,9 @@ package de.pandawan.MySqlDatabaseService;
 /**
  * Created by vuong on 27.03.16.
  */
-public class SqlQueryGenerator implements ISqlQueryGenerator {
+public class SqlQueryFactory implements ISqlQueryFactory {
     @Override
-    public QueryBuilder createQueryContextItem(String query) {
+    public QueryBuilder generateQuery(String query) {
         return new QueryBuilder(query);
     }
 }
