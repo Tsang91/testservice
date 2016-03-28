@@ -3,7 +3,6 @@ package de.pandawan.MySqlDatabaseService;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 
 /**
@@ -30,18 +29,21 @@ public class ISqlQueryGeneratorTest {
         String query = new String("select * from passwordTable");
         ISqlQueryGenerator queryCreator = new SqlQueryGenerator();
         QueryBuilder contextItem = queryCreator.createQueryContextItem(query);
-        Connection connection = new SqlConnectionFactory(
+        ISqlConnectionFactory factory= new SqlConnectionFactory(
             new LoginToken(
                 "jdbc:mysql://localhost:32768/PasswordDB",
                 "root",
                 "root"
                 ),
             "MySql"
-        ).establishConnection();
+        );
+        factory.prepareSession();
 
         //act
-        ResultSet set = connection.createStatement()
-            .executeQuery(queryCreator.createQueryContextItem(query).getQuery());
+        ResultSet set = factory.getStatement()
+            .executeQuery(contextItem.getQuery());
+        factory.closeSession();
+        set.close();
 
         //assert
         Assert.assertTrue("ResultSet shouldnt be null", set != null);

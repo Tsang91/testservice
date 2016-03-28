@@ -21,6 +21,7 @@ public class IMySqlConnectorTest {
 
         //act
         Connection connection = connector.connecionToDatabase();
+        connection.close();
 
         //assert
         Assert.assertTrue("Connection shouldn't be null", connection != null);
@@ -36,6 +37,8 @@ public class IMySqlConnectorTest {
 
         //act
         Statement statement = connection.createStatement();
+        connection.close();
+        statement.close();
 
         //assert
         Assert.assertTrue("Statement shoudln't be null", statement != null);
