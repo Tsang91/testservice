@@ -12,18 +12,10 @@ public class SqlConnectionFactory implements ISqlConnectionFactory {
     private String dbType;
 
     private Connection connection;
-    private Statement statement;
 
     public SqlConnectionFactory(LoginToken login, String dbType) {
         this.login = login;
         this.dbType = dbType;
-    }
-    @Override
-    public Statement getStatement() throws NullPointerException{
-        if(this.statement != null) {
-            return this.statement;
-        }
-        return null;
     }
 
     @Override
@@ -38,8 +30,6 @@ public class SqlConnectionFactory implements ISqlConnectionFactory {
     public void prepareSession() throws SQLException{
         if(dbType.matches("MySql")) {
             this.connection = new MySqlConnectorImpl(login).connecionToDatabase();
-            if(connection != null)
-                this.statement = connection.createStatement();
         }
     }
 
@@ -49,11 +39,5 @@ public class SqlConnectionFactory implements ISqlConnectionFactory {
             this.connection.close();
             this.connection = null;
         }
-
-        if(this.statement != null) {
-            this.statement.close();
-            this.statement = null;
-        }
-
     }
 }

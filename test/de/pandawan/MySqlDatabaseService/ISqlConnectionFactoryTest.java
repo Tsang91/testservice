@@ -25,7 +25,6 @@ public class ISqlConnectionFactoryTest {
 
         //assert
         Assert.assertTrue("Connection shouldn't be null", factory.getConnection() != null);
-        Assert.assertTrue("Statement shouldn't be null", factory.getStatement() != null);
         factory.closeSession();
     }
 
@@ -47,6 +46,5 @@ public class ISqlConnectionFactoryTest {
 
         //assert
         Assert.assertTrue("Connection should be null", factory.getConnection() == null);
-        Assert.assertTrue("Statement should be null", factory.getStatement() == null);
     }
 }

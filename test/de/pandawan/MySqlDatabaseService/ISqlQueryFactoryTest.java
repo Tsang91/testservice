@@ -3,7 +3,9 @@ package de.pandawan.MySqlDatabaseService;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by vuong on 27.03.16.
@@ -11,25 +13,15 @@ import java.sql.ResultSet;
 public class ISqlQueryFactoryTest {
 
     @Test
-    public void testQueryIsNotNull() throws Exception{
-        //arrange
-        String query = new String("select * from password");
-        ISqlQueryFactory queryCreator = new SqlQueryFactory();
-
-        //act
-        QueryBuilder contextItem = queryCreator.generateQuery(query);
-
-        //assert
-        Assert.assertTrue("QueryObject shouldn't be null", contextItem != null);
-    }
-
-    @Test
     public void testQueryReturnValueIsNotNull() throws Exception{
         //arrange
-        String query = new String("select * from passwordTable");
-        ISqlQueryFactory queryCreator = new SqlQueryFactory();
-        QueryBuilder contextItem = queryCreator.generateQuery(query);
-        ISqlConnectionFactory factory= new SqlConnectionFactory(
+        ArrayList<String> selectColumns = new ArrayList();
+        ArrayList<String> selectTables = new ArrayList<>();
+        selectColumns.add("*");
+        selectTables.add("passwordTable");
+
+        ISqlQueryFactory queryFactory = new SqlQueryFactory();
+        ISqlConnectionFactory connectionFactory = new SqlConnectionFactory(
             new LoginToken(
                 "jdbc:mysql://localhost:32768/PasswordDB",
                 "root",
@@ -37,12 +29,14 @@ public class ISqlQueryFactoryTest {
                 ),
             "MySql"
         );
-        factory.prepareSession();
+        connectionFactory.prepareSession();
+
+        PreparedStatement statement = queryFactory
+            .generatePreparedStatement(connectionFactory.getConnection(), selectColumns, selectTables);
 
         //act
-        ResultSet set = factory.getStatement()
-            .executeQuery(contextItem.getQuery());
-        factory.closeSession();
+        ResultSet set = statement.executeQuery();
+        connectionFactory.closeSession();
         set.close();
 
         //assert
